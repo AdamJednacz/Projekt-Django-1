@@ -74,6 +74,7 @@ footer > .container{
     padding: 0.5rem 7rem;
     margin-top: 0.5rem;
     margin-bottom: 2rem;
+    cursor: pointer;
 }
 
 .col:nth-of-type(4) > form > input{

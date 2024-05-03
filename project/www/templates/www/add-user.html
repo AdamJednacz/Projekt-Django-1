@@ -1,0 +1,23 @@
+{% extends 'www/index.html' %}
+
+
+
+{% block title %}Dodaj Studenta{% endblock %}
+
+
+
+{% block content %}
+
+<form class="form-control" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Zapisz</button>
+
+</form>
+
+
+
+{% endblock %}

@@ -56,10 +56,26 @@
         </div>
         </div>
     </section>
+    <section class="add_post">
+        <form method="POST">
+
+        </form>
+
+
+    </section>
+
+
     <section class="posts">
         <div class="container">
             <h1>Newest Post</h1>
-            <!--POSTY-->
+            {% for user in users %}
+            <img width="300" src="{{ user.photo.url }}" alt="">
+            <p>{{user.brand.url}}{{user.model.url}}</p>
+            <div>
+                <img width="300" src="{{ user.userphoto.url }}" alt="">
+                <p>{{user.name.url}}{{user.surname.url}}</p>
+            </div>
+            {% endfor %}
             <button>View All Post</button>
         </div>
     </section>
