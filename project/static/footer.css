@@ -1,0 +1,141 @@
+footer{
+    font-family: "Work Sans", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em 0;
+    background-color: #141624;
+    border-top: solid 1px #3B3C4A ;
+}
+
+footer > .container{
+    flex-direction: column ;
+    width: 100%;
+}
+.top_footer{
+    padding-top: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.col{
+    width: 30%;
+
+}
+.col:nth-of-type(2),.col:nth-of-type(3){
+    width: 10%;
+}
+
+.col > h2{
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 1em;
+}
+
+.col > p {
+    line-height: 24px;
+    color:#97989F ;
+   
+}
+.col:first-of-type > p:nth-of-type(2){
+    margin-top: 1em;
+}
+.col > p > span{
+    color: #fff;
+    line-height: 24px;
+   
+}
+
+.col:nth-of-type(4){
+    background-color:#242535 ;
+    border-radius: 12px;
+    display: flex;
+    align-items:center ;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.col:nth-of-type(4) >h2 {
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.col:nth-of-type(4) > form{
+    display: flex;
+    flex-direction: column;
+}
+
+.col:nth-of-type(4) > form > button{
+    background-color:#4B6BFB ;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    line-height: 24px;
+    padding: 0.5rem 7rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.col:nth-of-type(4) > form > input{
+    background-color: #181A2A;
+    border-radius: 6px;
+    line-height: 24px;
+    border: solid 1px #3B3C4A;
+    color:#3B3C4A;
+    padding:0.5rem 1rem ;
+    margin-top: 2rem;
+}
+
+
+
+.bot_footer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 3rem;
+    position: relative;
+   
+}
+.bot_footer::before{
+    position: absolute;
+    top:2rem;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color:#3B3C4A ;
+}
+
+
+.bot_footer_l{
+    display: flex;
+    align-items:center ;
+}
+
+.bot_footer_l > img {
+    margin-right: 0.5rem;
+}
+
+.copy{
+    color:#BABABF;
+    margin-top: 0.5rem;
+}
+
+.span{
+    font-weight: bold;
+
+}
+
+.bot_footer_r{
+    display: flex;
+    align-items: center;
+}
+.bot_footer_r > p {
+    color: #BABABF;
+    padding: 0 1rem;
+}
+
+.bot_footer_r > p:nth-of-type(2){
+   border-left: #3B3C4A solid 1px;
+   border-right: #3B3C4A solid 1px;
+} 

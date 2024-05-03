@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{% static 'header.css' %}">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'ad.css' %}">
+    <link rel="stylesheet" href="{% static 'post.css' %}">
+    <link rel="stylesheet" href="{% static 'footer.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
@@ -32,7 +35,9 @@
         <img class="lfa" src="{%static 'lfa.jpg'%}" alt="car"/>
         
         <div class="main_box">
+            <div class="main_h2">
             <h2>Cars</h2>
+            </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p> 
             <div class="main_user_coment_data">
                 <img class="main_user_profile_img" src="{%static 'main_profile.png'%}"/>
@@ -53,9 +58,9 @@
     </section>
     <section class="posts">
         <div class="container">
-        <h1>Latest Post</h1>
-        <!--POSTY-->
-        <button>View All Post</button>
+            <h1>Newest Post</h1>
+            <!--POSTY-->
+            <button>View All Post</button>
         </div>
     </section>
     <section class="ad">
@@ -73,8 +78,8 @@
             <div class="col">
                 <h2>About</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                <p><span>Email:</span>adamjednacz4@gmail.com</p>
-                <p><span>Phone:</span>123 123 123</p>
+                <p><span>Email : </span>adamjednacz4@gmail.com</p>
+                <p><span>Phone : </span>123 123 123</p>
             </div>
             <div class="col">
                 <h2>Quick Link</h2>
@@ -104,13 +109,18 @@
             </div>
            </div> 
            <div class="bot_footer">
-            <div>
-                <p>Meta<span>Blog</span></p>
-                <p>All Rights Reserved</p>
+            <div class="bot_footer_l">
+                <img src="{%static 'logo.png'%}" alt="logo"/>
+                <div class="bot_footer_l_ps">
+                <p>Meta<span class="span">Blog</span></p>
+                <p class="copy">&#169; All Rights Reserved </p>
             </div>
+            </div>
+            <div class="bot_footer_r">
             <p>Terms of Use</p>
             <p>Privacy Policy</p>
             <p>Cookie Policy</p>
+            </div>
         </div>
         </div>
         

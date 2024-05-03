@@ -1,0 +1,32 @@
+.ad{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Work Sans", sans-serif;
+    padding: 4em 0;
+}
+.ad > .container{
+    width: 100%;
+}
+.ad_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #393A49;
+    color:#696A75;
+    width: 50%;
+    padding: 1.7rem 0;
+    border-radius:12px ;
+}
+.ad_box > h2{
+    font-size: 14px;
+}
+
+.ad_box > p:first-of-type{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0.25rem 0;
+}
+
+

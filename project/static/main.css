@@ -5,12 +5,14 @@ main{
     justify-content: center;
     font-family: "Work Sans", sans-serif;
     position: relative;
+
 }
 
 main > .container{
     width: 100%;
     flex-direction: column;
     align-items: normal;
+
 }
 
  .lfa{
@@ -20,9 +22,9 @@ main > .container{
 
 
 .main_box{
-    position: relative;
+    position: absolute;
     left: 50%;
-    bottom:25rem;
+    bottom:10rem;
     padding: 2em;
     border-radius: 1rem;
     width: 50%;
@@ -30,7 +32,10 @@ main > .container{
     border: solid 1px #97989F ;
 }
 
-.main_box >h2{
+.main_box > .main_h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 0.9rem;
     padding: 5px 10px;
     background-color: #4B6BFB;

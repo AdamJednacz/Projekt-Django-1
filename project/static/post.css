@@ -1,0 +1,26 @@
+.posts{
+    font-family: "Work Sans", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.posts > .container{
+    flex-direction: column ;
+    width: 100%;
+}
+.posts > .container > h1 {
+        font-size: 24px;
+        font-weight: bold;
+        align-self: flex-start;
+}
+
+.posts > .container >button {
+        font-weight: bold;
+        line-height: 24px;
+        color: #696A75;
+        padding: 0.6em 1em; 
+        background: none;
+        border-radius: 6px;
+        border: solid 1px #696A75;
+}
