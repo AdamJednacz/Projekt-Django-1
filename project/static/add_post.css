@@ -1,0 +1,63 @@
+
+.add_post{
+    font-family: "Work Sans", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.add_post > .container{
+    flex-direction: column;
+}
+
+#id_text{
+    background-color: #181A2A;
+    border-radius: 6px;
+    line-height: 24px;
+    border: solid 1px #3B3C4A;
+    color:#fff;
+    padding:0.5rem 1rem ;
+    margin-top: 1rem;
+}
+
+
+input[type="text"], input[type="email"], input[type="file"] {
+    background-color: #181A2A;
+    border-radius: 6px;
+    line-height: 24px;
+    border: solid 1px #3B3C4A;
+    color:#fff;
+    padding:0.5rem 1rem ;
+    margin-top: 1rem;
+
+}
+
+
+button {
+    background-color:#4B6BFB ;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    line-height: 24px;
+    padding: 0.5rem 7rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+}
+button:hover {
+    background-color: #45a049;
+    transition: ease-in-out 0.5s;
+}
+
+
+label {
+    margin-bottom: 6px;
+    display: block;
+}
+
+.add_post > .container > form{
+    display: flex;
+    flex-direction: column;
+}

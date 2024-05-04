@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{% static 'ad.css' %}">
     <link rel="stylesheet" href="{% static 'post.css' %}">
     <link rel="stylesheet" href="{% static 'footer.css' %}">
+    <link rel="stylesheet" href="{% static 'add_post.css' %}">
+    <link rel="stylesheet" href="{% static 'posts.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
@@ -57,26 +59,41 @@
         </div>
     </section>
     <section class="add_post">
-        <form method="POST">
-
-        </form>
-
-
+        <div class="container">
+            <h2>Add User</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.name}}
+                {{form.surname}}
+                {{form.email}}
+                <p>profile photo</p>
+                {{form.userphoto}}
+                <p>photo</p>
+                {{form.photo}}
+                {{form.text}}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </section>
-
-
     <section class="posts">
         <div class="container">
-            <h1>Newest Post</h1>
             {% for user in users %}
-            <img width="300" src="{{ user.photo.url }}" alt="">
-            <p>{{user.brand.url}}{{user.model.url}}</p>
-            <div>
-                <img width="300" src="{{ user.userphoto.url }}" alt="">
-                <p>{{user.name.url}}{{user.surname.url}}</p>
-            </div>
-            {% endfor %}
-            <button>View All Post</button>
+            <div class="post">
+                
+                    <img class="post_user_photo" src="{{ user.photo.url }}" alt="car"/>
+                    <p class="post_element_text">{{ user.text }}</p>
+                    <div class="post_user_info_container">
+                    <img class="post_user_user_photo" src="{{ user.userphoto.url }}" alt="car"/>
+                    <div class="post_element_info">
+                        <div class="post_element_user_name_sure_name">
+                        <p class="post_element">{{user.name}}</p>
+                        <p class="post_element">{{user.surname}}</p>
+                        </div>
+                        <p class="post_element_email">{{user.email}}</p>
+                    </div>
+                </div>
+                </div>
+           {% endfor %}
         </div>
     </section>
     <section class="ad">
