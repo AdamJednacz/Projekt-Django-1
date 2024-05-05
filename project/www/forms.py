@@ -1,17 +1,7 @@
 from django import forms
 
-from .models import Brand , Model , User
+from .models import  User,Comment
 
-class BrandForm(forms.ModelForm):
-    class Meta:
-        model = Brand
-        fields = '__all__'
-
-
-class ModelForm(forms.ModelForm):
-    class Meta:
-        model = Model
-        fields = '__all__'
 
 
 class UserForm(forms.ModelForm):
@@ -24,3 +14,11 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = '__all__'
+
+
+class CommentForm(forms.ModelForm):
+    text = forms.CharField(max_length=200, widget=forms.Textarea(attrs={'placeholder': 'Write your comment here...'}))
+    user_id = forms.IntegerField(widget=forms.HiddenInput)
+    class Meta:
+        model = Comment
+        fields = ['text']

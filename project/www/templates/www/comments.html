@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'ad.css' %}">
     <link rel="stylesheet" href="{% static 'post.css' %}">
     <link rel="stylesheet" href="{% static 'footer.css' %}">
-    <link rel="stylesheet" href="{% static 'add_post.css' %}">
+
     <link rel="stylesheet" href="{% static 'posts.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,85 +25,45 @@
                 <h1>Car<span>Blog</span></h1>
             </div>
             <ul class="menu">
-                <li class="menu_element"><a href="{% url 'home' %}"></a>Home</a></li>
-                <li class="menu_element"><a href="{% url 'comments' %}">Comments</a></li>
+                <li class="menu_element"><a href="{% url 'home' %}">Home</a></li>
+                <li class="menu_element">Comments</li>
                 <li class="menu_element">About us</li>
                 <li class="menu_element">Contact</li>
             </ul>
         </div>
     </header>
-    <main>
-        <div class="container">
-        <img class="lfa" src="{%static 'lfa.jpg'%}" alt="car"/>
-        
-        <div class="main_box">
-            <div class="main_h2">
-            <h2>Cars</h2>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p> 
-            <div class="main_user_coment_data">
-                <img class="main_user_profile_img" src="{%static 'main_profile.png'%}"/>
-                <h2 class="main_name">Jan Kowalski</h2>
-                <p class="main_date"></p>
-            </div>
-        </div>
-        </div>
-    </main>
-    <section class="ad">
-        <div class="container">
-        <div class="ad_box">
-            <h2>Advertisement</h2>
-            <p>You can place ads</p>
-            <p>750x100</p>
-        </div>
-        </div>
-    </section>
-    <section class="add_post">
-        <div class="container">
-            <h2>Add User / Add Post</h2>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{form.name}}
-                {{form.surname}}
-                {{form.email}}
-                <label>Profile</label>
-                {{form.userphoto}}
-                <label>Car Photo</label>
-                {{form.photo}}
-                {{form.text}}
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </section>
     <section class="posts">
         <div class="container">
             {% for user in users %}
             <div class="post">
-                    <img class="post_user_photo" src="{{ user.photo.url }}" alt="car"/>
-                    <p class="post_element_text">{{ user.text }}</p>
-                    <div class="post_user_info_container">
+                <img class="post_user_photo" src="{{ user.photo.url }}" alt="car"/>
+                <p class="post_element_text">{{ user.text }}</p>
+                <div class="post_user_info_container">
                     <img class="post_user_user_photo" src="{{ user.userphoto.url }}" alt="car"/>
                     <div class="post_element_info">
                         <div class="post_element_user_name_sure_name">
-                        <p class="post_element">{{user.name}}</p>
-                        <p class="post_element">{{user.surname}}</p>
+                            <p class="post_element">{{ user.name }}</p>
+                            <p class="post_element">{{ user.surname }}</p>
                         </div>
-                        <p class="post_element_email">{{user.email}}</p>
+                        <p class="post_element_email">{{ user.email }}</p>
                     </div>
                 </div>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <!-- Ukryte pole z identyfikatorem użytkownika -->
+                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                    <button type="submit">Dodaj komentarz</button>
+                </form>
+                <!-- Wyświetlanie komentarzy dla danego użytkownika -->
+                {% for comment in user.comment_set.all %}
+                <div class="comment">
+                    <p>{{ comment.text }}</p>
+                   
                 </div>
+                {% endfor %}
+            </div>
            {% endfor %}
-          
-        </div>
-        <a href="{% url 'comments' %}"><button>View More</button></a>
-    </section>
-    <section class="ad">
-        <div class="container">
-        <div class="ad_box">
-            <h2>Advertisement</h2>
-            <p>You can place ads</p>
-            <p>750x100</p>
-        </div>
         </div>
     </section>
     <footer>

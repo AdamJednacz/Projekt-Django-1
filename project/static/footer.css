@@ -76,7 +76,10 @@ footer > .container{
     margin-bottom: 2rem;
     cursor: pointer;
 }
-
+.col:nth-of-type(4) > form > button:hover {
+    background-color: #45a049;
+    transition: ease-in-out 0.5s;
+}
 .col:nth-of-type(4) > form > input{
     background-color: #181A2A;
     border-radius: 6px;

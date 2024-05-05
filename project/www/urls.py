@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import index
+from .views import index,comment
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('', index, name='home'),
+    path('comments/', comment, name='comments'),
 ]
