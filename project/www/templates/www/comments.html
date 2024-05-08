@@ -32,38 +32,41 @@
             </ul>
         </div>
     </header>
-    <section class="posts">
+    <section class="posts ">
         <div class="container">
             {% for user in users %}
-            <div class="post">
-                <img class="post_user_photo" src="{{ user.photo.url }}" alt="car"/>
-                <p class="post_element_text">{{ user.text }}</p>
-                <div class="post_user_info_container">
-                    <img class="post_user_user_photo" src="{{ user.userphoto.url }}" alt="car"/>
-                    <div class="post_element_info">
-                        <div class="post_element_user_name_sure_name">
-                            <p class="post_element">{{ user.name }}</p>
-                            <p class="post_element">{{ user.surname }}</p>
+           
+                <div class="post post_comments">
+                    <img class="post_user_photo" src="{{ user.photo.url }}" alt="car"/>
+                    <p class="post_element_text">{{ user.text }}</p>
+                    <div class="post_user_info_container">
+                        <img class="post_user_user_photo" src="{{ user.userphoto.url }}" alt="car"/>
+                        <div class="post_element_info">
+                            <div class="post_element_user_name_sure_name">
+                                <p class="post_element">{{ user.name }}</p>
+                                <p class="post_element">{{ user.surname }}</p>
+                            </div>
+                            <p class="post_element_email">{{ user.email }}</p>
                         </div>
-                        <p class="post_element_email">{{ user.email }}</p>
                     </div>
-                </div>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <!-- Ukryte pole z identyfikatorem użytkownika -->
-                    <input type="hidden" name="user_id" value="{{ user.id }}">
-                    <button type="submit">Dodaj komentarz</button>
-                </form>
-                <!-- Wyświetlanie komentarzy dla danego użytkownika -->
-                {% for comment in user.comment_set.all %}
-                <div class="comment">
-                    <p>{{ comment.text }}</p>
-                   
-                </div>
-                {% endfor %}
-            </div>
-           {% endfor %}
+                    <form class="add_comment" method="post">
+                        {% csrf_token %}
+                        {{form}}
+            
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <button class="add_comment_button" type="submit">Dodaj komentarz</button>
+                    </form>
+                    <div class="comments">
+                    {% for comment in user.comment_set.all.reverse %}
+                        <p class="comment">{{ comment.text }}</p>
+                        {% endfor %}
+                    </div>
+                
+                    
+                     
+             </div>
+            {% endfor %}
+            
         </div>
     </section>
     <footer>

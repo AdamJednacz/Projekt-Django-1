@@ -16,9 +16,6 @@ def index(request):
 
 
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .models import Comment
 
 def comment(request):
     users = User.objects.all()  # Pobierz wszystkich użytkowników

@@ -6,7 +6,7 @@ class User(models.Model):
     userphoto = models.ImageField(upload_to='images')
     email = models.EmailField(max_length=100)
     photo = models.ImageField(upload_to='images')
-    text = models.CharField(max_length=200, default='')
+    text = models.CharField(max_length=100, default='')
     create = models.DateTimeField(auto_now=False, auto_now_add=True)
 
     def __str__(self):
