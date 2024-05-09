@@ -57,9 +57,19 @@
                         <button class="add_comment_button" type="submit">Dodaj komentarz</button>
                     </form>
                     <div class="comments">
-                    {% for comment in user.comment_set.all.reverse %}
+                    {% for comment in user.comment_set.all %}
                         <p class="comment">{{ comment.text }}</p>
-                        {% endfor %}
+                        <form method="post" action="{% url 'like_comment' %}">
+                            {% csrf_token %}
+                            <button type="submit">Like</button>
+                        </form>
+                        <form method="post" action="{% url 'unlike_comment' %}">
+                            {% csrf_token %}
+                            <button type="submit">Unlike</button>
+                        </form>
+                        <!-- Liczba kliknięć "like" -->
+                        <p>{{ comment.count_likes }}</p>
+                    {% endfor %}
                     </div>
                 
                     

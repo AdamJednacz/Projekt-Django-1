@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import User,Comment
+from .models import User,Comment,Like
 from .forms import UserForm,CommentForm
 def index(request):
     if request.method == 'POST':
@@ -31,3 +31,17 @@ def comment(request):
         form = CommentForm()  # Utwórz nowy formularz, gdy strona zostanie załadowana
 
     return render(request, 'www/comments.html', {'form': form, 'users': users})
+
+
+def like_comment(request, comment_id):
+    comment = Comment.objects.get(pk=comment_id)
+    Like.objects.create(comment=comment, like=True)
+    return redirect('home')
+
+def unlike_comment(request, comment_id):
+    comment = Comment.objects.get(pk=comment_id)
+    Like.objects.create(comment=comment, like=False)
+    return redirect('home')
+
+
+
