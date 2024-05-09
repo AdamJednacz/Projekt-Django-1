@@ -17,7 +17,7 @@ class UserForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-    text = forms.CharField(max_length=200, widget=forms.Textarea(attrs={'placeholder': 'Write your comment here...'}))
+    text = forms.CharField(max_length=200, widget=forms.Textarea(attrs={'placeholder': 'Write your comment here...','class':'add_comment_text_area'}))
     user_id = forms.IntegerField(widget=forms.HiddenInput)
     class Meta:
         model = Comment
