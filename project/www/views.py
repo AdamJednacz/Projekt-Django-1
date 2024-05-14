@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import User,Comment,Like
+from .models import User,Comment,Like,Unlike
 from .forms import UserForm,CommentForm
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 def index(request):
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES)
@@ -32,16 +34,26 @@ def comment(request):
 
     return render(request, 'www/comments.html', {'form': form, 'users': users})
 
+def like(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    user = request.user  # Pobierz aktualnego użytkownika, który polubił komentarz (jeśli jest zalogowany)
+    like, created = Like.objects.get_or_create(comment=comment, user=user)
+    if created:
+        # Zwiększ liczbę polubień dla komentarza
+        comment.likes_count += 1
+        comment.save()
+        return redirect('home')
+    else:
+        return redirect('home')
 
-def like_comment(request, comment_id):
-    comment = Comment.objects.get(pk=comment_id)
-    Like.objects.create(comment=comment, like=True)
-    return redirect('home')
-
-def unlike_comment(request, comment_id):
-    comment = Comment.objects.get(pk=comment_id)
-    Like.objects.create(comment=comment, like=False)
-    return redirect('home')
-
-
-
+def unlike(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    user = request.user  # Pobierz aktualnego użytkownika, który nie polubił komentarza (jeśli jest zalogowany)
+    unlike, created = Unlike.objects.get_or_create(comment=comment, user=user)
+    if created:
+        # Zwiększ liczbę niepolubień dla komentarza
+        comment.unlikes_count += 1
+        comment.save()
+        return redirect('home')
+    else:
+        return redirect('home')

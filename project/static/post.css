@@ -12,7 +12,7 @@
     padding: 1rem 1rem 1.5rem 1rem;
     border: #3B3C4A solid 1px;
     border-radius: 12px;
-    height: 55vh;
+    height: 40vh;
     width: 20vw;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,8 @@
 }
 
 .post_comments{
-   
+  
+
     height: 80vh;
 
 }
@@ -141,12 +142,36 @@ label{
 .comments{
     margin-top: 1rem;
     overflow:auto;
-    height: 70px;
 
 }
 
 .comment{
     animation: show ease-in-out 1s;
+}
+
+
+.comment_container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.like_contaienr{
+    display: flex;
+}
+
+
+.btn{
+    border:none;
+    background: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.like{
+    color: #45a049
+}
+
+.unlike{
+    color: red;
 }
 
 @keyframes show {

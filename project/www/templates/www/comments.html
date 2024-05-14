@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'ad.css' %}">
     <link rel="stylesheet" href="{% static 'post.css' %}">
     <link rel="stylesheet" href="{% static 'footer.css' %}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'posts.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,6 +37,7 @@
             {% for user in users %}
            
                 <div class="post post_comments">
+                    <div>
                     <img class="post_user_photo" src="{{ user.photo.url }}" alt="car"/>
                     <p class="post_element_text post_element_text_comments">{{ user.text }}</p>
                     <div class="post_user_info_container">
@@ -53,22 +54,31 @@
                         {% csrf_token %}
                         {{form}}
             
-                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                      
                         <button class="add_comment_button" type="submit">Dodaj komentarz</button>
                     </form>
+                    </div>
                     <div class="comments">
                     {% for comment in user.comment_set.all %}
+                    <div class="comment_container">
                         <p class="comment">{{ comment.text }}</p>
-                        <form method="post" action="{% url 'like_comment' %}">
+                        <div class="like_contaienr">
+                        <form method="post">
                             {% csrf_token %}
-                            <button type="submit">Like</button>
+                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                            <button class="like btn" type="submit"><i class="far fa-thumbs-up"></i></button>
+                            <p>{{ comment.like.count }}</p>
                         </form>
-                        <form method="post" action="{% url 'unlike_comment' %}">
+                        <form method="post">
                             {% csrf_token %}
-                            <button type="submit">Unlike</button>
+                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                            <button class="unlike btn" type="submit"><i class="far fa-thumbs-down"></i></button>
+                            <p>{{ comment.unlike.count }}</p>
                         </form>
                         <!-- Liczba kliknięć "like" -->
-                        <p>{{ comment.count_likes }}</p>
+                       
+                    </div>
+                    </div>   
                     {% endfor %}
                     </div>
                 

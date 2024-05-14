@@ -80,6 +80,7 @@
             {% for user in users %}
             <div class="post">
                     <img class="post_user_photo" src="{{ user.photo.url }}" alt="car"/>
+                    <div>
                     <p class="post_element_text">{{ user.text }}</p>
                     <div class="post_user_info_container">
                     <img class="post_user_user_photo" src="{{ user.userphoto.url }}" alt="car"/>
@@ -92,6 +93,7 @@
                     </div>
                 </div>
                 </div>
+            </div>
            {% endfor %}
           
         </div>
