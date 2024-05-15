@@ -13,26 +13,27 @@ class User(models.Model):
         return self.name + " " + self.surname 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Klucz obcy do użytkownika
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
- 
+
    
 
     def __str__(self):
         return f'Comment on {self.created_at}'
+    
+
+
 class Like(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    clicks = models.IntegerField(default=0)
     def __str__(self):
-        return f'Like on {self.comment} by {self.user}'
+        return f'Like on {self.comment}'
 
 class Unlike(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    clicks = models.IntegerField(default=0)
     def __str__(self):
-        return f'Unlike on {self.comment} by {self.user}'
+        return f'Unlike on {self.comment}'

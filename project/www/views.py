@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import User,Comment,Like,Unlike
 from .forms import UserForm,CommentForm
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.db.models import F
 def index(request):
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES)
@@ -12,15 +11,13 @@ def index(request):
     else:
         form = UserForm()
 
-    users = User.objects.all()  # Pobierz wszystkich użytkowników
+    users = User.objects.all()  
 
     return render(request, 'www/index.html', {'form': form, 'users': users})
 
 
-
-
 def comment(request):
-    users = User.objects.all()  # Pobierz wszystkich użytkowników
+    users = User.objects.all()  
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -30,30 +27,50 @@ def comment(request):
             comment = Comment.objects.create(text=text, user=user)
             return redirect('comments')
     else:
-        form = CommentForm()  # Utwórz nowy formularz, gdy strona zostanie załadowana
+        form = CommentForm()  
 
     return render(request, 'www/comments.html', {'form': form, 'users': users})
 
-def like(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
-    user = request.user  # Pobierz aktualnego użytkownika, który polubił komentarz (jeśli jest zalogowany)
-    like, created = Like.objects.get_or_create(comment=comment, user=user)
-    if created:
-        # Zwiększ liczbę polubień dla komentarza
-        comment.likes_count += 1
-        comment.save()
-        return redirect('home')
-    else:
-        return redirect('home')
+def like(request):
+    if request.method == 'POST':
+        comment_id = request.POST.get('comment_id')
+     
+        if comment_id:
+            comment = Comment.objects.get(id=comment_id)
+    
+            try:
+                like = Like.objects.get(comment=comment)
+                like.delete() 
+                comment.like_set.update(clicks=F('clicks') - 1) 
+            except Like.DoesNotExist:
+                Like.objects.create(comment=comment)
+                comment.like_set.update(clicks=F('clicks') + 1)  
 
-def unlike(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
-    user = request.user  # Pobierz aktualnego użytkownika, który nie polubił komentarza (jeśli jest zalogowany)
-    unlike, created = Unlike.objects.get_or_create(comment=comment, user=user)
-    if created:
-        # Zwiększ liczbę niepolubień dla komentarza
-        comment.unlikes_count += 1
-        comment.save()
-        return redirect('home')
-    else:
-        return redirect('home')
+            return redirect('comments')
+
+def unlike(request):
+    if request.method == 'POST':
+        comment_id = request.POST.get('comment_id')
+   
+        if comment_id:
+            comment = Comment.objects.get(id=comment_id)
+     
+            try:
+                unlike = Unlike.objects.get(comment=comment)
+                unlike.delete()  
+                comment.unlike_set.update(clicks=F('clicks') - 1)  
+            except Unlike.DoesNotExist:
+                Unlike.objects.create(comment=comment)
+                comment.unlike_set.update(clicks=F('clicks') + 1)  
+
+            return redirect('comments')
+    total_likes = Comment.objects.aggregate(sum('like__clicks'))
+    total_unlikes = Comment.objects.aggregate(sum('unlike__clicks'))
+    return render(request, 'www/comments.html', {'total_likes': total_likes, 'total_unlikes': total_unlikes})        
+
+
+def about_us(request):
+        return render(request, 'www/about_us.html', {})
+
+def contact(request):
+        return render(request, 'www/contact.html', {})

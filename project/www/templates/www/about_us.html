@@ -6,12 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'header.css' %}">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
-    <link rel="stylesheet" href="{% static 'main.css' %}">
-    <link rel="stylesheet" href="{% static 'ad.css' %}">
-    <link rel="stylesheet" href="{% static 'post.css' %}">
+
     <link rel="stylesheet" href="{% static 'footer.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{% static 'posts.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
@@ -26,64 +23,13 @@
             </div>
             <ul class="menu">
                 <li class="menu_element"><a href="{% url 'home' %}">Home</a></li>
-                <li class="menu_element"><a href="{% url 'comments' %}">Comments</a></li>
+                <li class="menu_element"><a href="{%url 'comments'%}">Comments</a></li>
                 <li class="menu_element"><a href="{%url 'about'%}">About us</a></li>
                 <li class="menu_element"><a href="{%url 'contact'%}">Contact</a></li>
             </ul>
         </div>
     </header>
-    <section class="posts ">
-        <div class="container">
-            {% for user in users %}
-           
-                <div class="post post_comments">
-                    <div>
-                    <img class="post_user_photo" src="{{ user.photo.url }}" alt="car"/>
-                    <p class="post_element_text post_element_text_comments">{{ user.text }}</p>
-                    <div class="post_user_info_container">
-                        <img class="post_user_user_photo" src="{{ user.userphoto.url }}" alt="car"/>
-                        <div class="post_element_info">
-                            <div class="post_element_user_name_sure_name">
-                                <p class="post_element">{{ user.name }}</p>
-                                <p class="post_element">{{ user.surname }}</p>
-                            </div>
-                            <p class="post_element_email">{{ user.email }}</p>
-                        </div>
-                    </div>
-                    <form class="add_comment" method="post" >
-                        {% csrf_token %}
-                        {{form}}
-                        <input type="hidden" name="user_id" value="{{ user.id }}">
-                      
-                        <button class="add_comment_button" type="submit">Dodaj komentarz</button>
-                    </form>
-                    </div>
-                    <div class="comments">
-                    {% for comment in user.comment_set.all %}
-                    <div class="comment_container">
-                        <p class="comment">{{ comment.text }}</p>
-                        <div class="like_contaienr">
-                        <form class="like_container_form" method="post" action="{% url 'like' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                            <button class="like btn" type="submit"><i class="far fa-thumbs-up"></i></button>
-                            <p class="count"> {{comment.like_set.count }}</p>
-                        </form>
-                        <form class="like_container_form"  method="post"  action="{% url 'unlike' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                            <button class="unlike btn" type="submit"><i class="far fa-thumbs-down"></i></button>
-                            <p class="count"> {{comment.unlike_set.count }}</p>
-                        </form>
-                    </div>
-                    </div>   
-                    {% endfor %}
-                </div>      
-             </div>
-            {% endfor %}
-            
-        </div>
-    </section>
+  
     <footer>
         <div class="container">
            <div class="top_footer">
