@@ -12,9 +12,13 @@ header >.container{
 }
 .logo{
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .logo > img{
     margin-right: 15px;
+    width: 40px;
+    height: 36px;
 }
 .logo >h1{
     font-size: 2.5rem;

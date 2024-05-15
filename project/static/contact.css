@@ -1,0 +1,20 @@
+.contact{
+    font-family: "Work Sans", sans-serif;
+
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact > .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
+h2{
+    font-weight: bold;
+}

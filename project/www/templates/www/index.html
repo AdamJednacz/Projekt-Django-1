@@ -60,8 +60,8 @@
     </section>
     <section class="add_post">
         <div class="container">
-            <h2>Add User / Add Post</h2>
-            <form method="POST" enctype="multipart/form-data">
+            <img class="bugatti" src="{% static 'bugatti.jpg' %}"/>
+            <form class="add_post_form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form.name}}
                 {{form.surname}}

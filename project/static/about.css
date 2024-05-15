@@ -1,0 +1,27 @@
+.about{
+    font-family: "Work Sans", sans-serif;
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about > .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.about_items{
+    width: 45%;
+}
+.about_items > p{
+    margin-top: 1rem;
+}
+.about_items > h1{
+    font-size: 2rem;
+}
+.about_car{
+    width: 45%;
+}
